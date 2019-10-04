@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from GetStudent.getstudent_models.Student import Student
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
@@ -7,6 +6,8 @@ from django.urls import reverse_lazy
 from django.http import HttpResponse
 from random import choice
 from GetStudent.forms.StudentForm import StudentForm
+#from ProgrammingClass.universal_models.Student import Student
+from GetStudent.getstudent_models.Student import Student
 
 # Create your views here.
 
