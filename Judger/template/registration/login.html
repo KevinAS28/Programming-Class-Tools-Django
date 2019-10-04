@@ -161,14 +161,14 @@
 <body class="htmlNoPages">
     <form method="POST">
         <div class="gwd-div-1r54">
-            {% comment %} <input class="gwd-input-wkkg gwd-input-iwdm gwd-input-1v6x gwd-input-1uai gwd-input-bw4g gwd-input-xolx">
-            <input class="gwd-input-wkkg gwd-input-iwdm gwd-input-1v6x gwd-input-1uai gwd-input-jvvc gwd-input-1ivc"> {% endcomment %}
+            <input class="gwd-input-wkkg gwd-input-iwdm gwd-input-1v6x gwd-input-1uai gwd-input-bw4g gwd-input-xolx" name="password" type="password">
+            <input class="gwd-input-wkkg gwd-input-iwdm gwd-input-1v6x gwd-input-1uai gwd-input-jvvc gwd-input-1ivc" name="username" >
             {% csrf_token %}
-            {{ form.as_p }}
+            {% comment %} {{ form.as_p }} {% endcomment %}
             <button class="gwd-button-1pm3">Submit</button>
             <p class="gwd-input-qsrr gwd-p-1agk gwd-p-1lip gwd-p-7j4p gwd-p-y6ok">Judger V 0.1</p>
-            {% comment %} <p class="gwd-input-qsrr gwd-p-1agk gwd-p-1lip gwd-p-7j4p gwd-p-17fl">Username</p>
-            <p class="gwd-input-qsrr gwd-p-1agk gwd-p-1lip gwd-p-2s9p">Password</p> {% endcomment %}
+            <p class="gwd-input-qsrr gwd-p-1agk gwd-p-1lip gwd-p-7j4p gwd-p-17fl">Username</p>
+            <p class="gwd-input-qsrr gwd-p-1agk gwd-p-1lip gwd-p-2s9p">Password</p>
         </div>
     </form>
 </body>
