@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Public ScoreBoard</title>
+  <meta name="generator" content="Google Web Designer 6.0.1.0801">
+  <style type="text/css" id="gwd-text-style">
+    p {
+      margin: 0px;
+    }
+    h1 {
+      margin: 0px;
+    }
+    h2 {
+      margin: 0px;
+    }
+    h3 {
+      margin: 0px;
+    }
+  </style>
+  <style type="text/css">
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+    }
+    body {
+      background-color: transparent;
+      transform: perspective(1400px) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+      transform-style: preserve-3d;
+    }
+    .gwd-div-1hqv {
+      position: absolute;
+      text-align: center;
+      width: 90%;
+      left: 5%;
+      height: 70%;
+      top: 250px;
+    }
+    .gwd-span-1dun {
+      position: absolute;
+      top: 15.41%;
+      height: 6.92%;
+      width: 30%;
+      left: 5%;
+      text-align: center;
+    }
+    .gwd-span-49iu {
+      left: 35%;
+    }
+    .gwd-span-18jc {
+      left: 65%;
+      font-size: 40px;
+      top: 120.39px;
+      height: 44.01px;
+    }
+    .gwd-span-j5qi {
+      font-size: 40px;
+      top: 120.39px;
+      height: 44.01px;
+    }
+    .gwd-span-1squ {
+      font-size: 40px;
+      top: 120.39px;
+      height: 44.01px;
+    }
+    .gwd-span-rhfv {
+      position: absolute;
+      text-align: center;
+      font-size: 40px;
+      font-weight: bold;
+      top: 22.01px;
+      height: 76px;
+      width: 50%;
+      left: 25%;
+    }
+    .gwd-div-nh2g {
+      position: absolute;
+      text-align: center;
+      width: 92%;
+      left: 3%;
+      height: 49.99px;
+      top: 10px;
+    }
+    .gwd-span-18k6 {
+      position: absolute;
+      transform-origin: 139px 24px 0px;
+      left: -0.35%;
+      top: 0%;
+      width: 32.69%;
+      height: 96.06%;
+      text-align: center;
+      font-size: 35px;
+    }
+    .gwd-span-7vzj {
+      left: 32.95%;
+    }
+    .gwd-span-1up5 {
+      left: 67.17%;
+    }
+  </style>
+</head>
+
+<body class="htmlNoPages">
+  <div class="gwd-div-1hqv">
+    {% for i in yay %}    
+    <div class="gwd-div-nh2g" style="top: {{counter.count}}px;">
+      <span class="gwd-span-18k6">Tes</span>
+      <span class="gwd-span-18k6 gwd-span-7vzj">Tes</span>
+      <span class="gwd-span-18k6 gwd-span-7vzj gwd-span-1up5">Tes</span>
+    </div> 
+    {{counter.increment}}
+    {% endfor %}
+    
+    {% comment %} <tr style="width:100%;">
+      <td style="width:30%;">
+        <p class="gwd-span-18k6">Test</p>
+      </td>
+    </tr> {% endcomment %}
+  </div>
+  <span class="gwd-span-1dun gwd-span-j5qi">Name</span>
+  <span class="gwd-span-1dun gwd-span-49iu gwd-span-1squ">Problem</span>
+  <span class="gwd-span-1dun gwd-span-49iu gwd-span-18jc">Score</span>
+  <span class="gwd-span-rhfv">Public Scoreboard</span></body>
+</html>

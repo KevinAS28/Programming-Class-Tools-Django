@@ -22,7 +22,7 @@ def py_run_check(inp, out, pyfile):
 
 def py_check_input_output(inp, out, pyfile):    
     """
-    its the same with py_run_check, but with automatic read the inp and out as file
+    its the same with py_run_check(), but with automatic read the inp and out as file
     """
     if (os.access(inp, os.R_OK) and os.access(out, os.W_OK)):
         with open(inp, "r+") as rf:
@@ -48,4 +48,4 @@ def py_static_check(writeuppy, pyfile):
     return True
 
 if (__name__=="__main__"):
-    print(py_static_check("example.writeup", "example/example.py"))
+    print(py_static_check("problems.example.writeup", "problems/example/answer/example.py"))

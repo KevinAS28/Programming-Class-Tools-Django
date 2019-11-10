@@ -2,5 +2,5 @@
 a = input()
 if (a=="knock knock"):
     print("whos there?")
-else:
+elif (a=="what?"):
     print("say the magic word")

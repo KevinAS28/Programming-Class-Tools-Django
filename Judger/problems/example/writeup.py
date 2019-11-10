@@ -1,7 +1,8 @@
 static_in = [
 "knock knock",
-"good morning"
+"what?"
 ]
+
 
 static_out = [
 "whos there?\n",

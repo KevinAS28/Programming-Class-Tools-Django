@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'GetStudent',
-    'Judger'
+    'Judger',
+    'User',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -58,7 +60,8 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, "GetStudent", "template"),
-            os.path.join(BASE_DIR, "Judger", "template")
+            os.path.join(BASE_DIR, "Judger", "template"),
+            os.path.join(BASE_DIR, "User", "template")
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -137,6 +140,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = 'home'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGOUT_REDIRECT_URL = 'home'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# EMAIL_HOST = 'smtp.gmail.com'
+
+# EMAIL_PORT = '587'
+
+AUTH_USER_MODEL = 'User.Student'
+
+AUTHENTICATION_BACKENDS = ('User.backends.AuthenticationBackend.AuthenticationBackend','django.contrib.auth.backends.ModelBackend',)
