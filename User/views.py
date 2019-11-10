@@ -10,6 +10,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template 
 from django.template import Context 
 from User.user_forms.StudentForm import StudentForm
+from User.user_forms.StudentLoginForm import StudentLoginForm
 from django.db.utils import IntegrityError
 from User.user_models.Student import Student
 from User.user_models.Kelas import Kelas
@@ -78,5 +79,5 @@ def login_form(request):
             return redirect('index') 
         else: 
             messages.info(request, f'account done not exit plz sign in') 
-    form = StudentForm() 
+    form = StudentLoginForm() 
     return render(request, 'login.html', {'form':form, 'title':'log in'}) 

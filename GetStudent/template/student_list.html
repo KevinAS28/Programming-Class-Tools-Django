@@ -67,6 +67,8 @@
       width: 100%;
       left: 0%;
       top: 0%;
+      margin-top: 5px;
+      margin-bottom: 5px;
     }
     .gwd-span-56xx {
       top: 50%;
@@ -80,7 +82,7 @@
 
 
 <body class="htmlNoPages">
-  <div class="gwd-p-qv20 gwd-div-bded">Student Getter V 0.1 alpha</div>
+  <div class="gwd-p-qv20 gwd-div-bded">Student Getter V 0.2 alpha</div>
   
   <div class="gwd-p-qv20 gwd-div-1vsy">Wifi: Lab Jaringan 1<br>
      Pass: ptsbk2019<br>
@@ -90,11 +92,28 @@
     
 
     <table class="gwd-div-ysra">
-      {% for student in students %}
         <tr>
           <td>
-            <p class="gwd-span-13fn">{{student.name}} {{student.kelas}} - {{student.index}}</p>
+            <p class="gwd-span-13fn" style="font-weight: bold;">Index</p>
           </td>
+          <td>
+            <p class="gwd-span-13fn" style="font-weight: bold;">Nama</p>
+          </td>          
+          <td>
+            <p class="gwd-span-13fn" style="font-weight: bold;">Kelas - Jurusan</p>
+          </td>          
+        </tr>
+      {% for presensi in presentions %}
+        <tr style="outline: thin solid;padding-bottom: 10px;" >
+          <td>
+            <p class="gwd-span-13fn">{{presensi.index}}</p>
+          </td>                            
+          <td>
+            <p class="gwd-span-13fn">{{presensi.student_info.name}}</p>
+          </td>
+          <td>
+            <p class="gwd-span-13fn">{{presensi.student_info.kelas.tingkat}}-{{presensi.student_info.jurusan.nama_jurusan}}</p>
+          </td>          
         </tr>      
       {% endfor %}
     </table>
