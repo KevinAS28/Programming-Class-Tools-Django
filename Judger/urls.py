@@ -6,7 +6,8 @@ urlpatterns = [
     path('test/', include('django.contrib.auth.urls')),
     path('publicscore/', views.public_scoreboard, name="public_scoreboard"),
     path('upload/', views.upload_file, name="upload_script"),
-    path('list/', views.upload_file, name="problem_list"),
+    path('list/', views.problem_list, name="problem_list"),
     path('detail/', views.upload_file, name="problem_detail"),
-
+    path('list/<str:problem>/', views.problem_detail)
+    
 ]

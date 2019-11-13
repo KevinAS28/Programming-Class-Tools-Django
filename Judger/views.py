@@ -1,26 +1,13 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django import forms
 import ProgrammingClass.settings as settings
 import os
 # Create your views here.
 
-class Problem:
-    title = ""
-    problem = ""
-    def __init__(self, title, problem):
-        self.title = title
-        self.problem = problem
-
-class Counter:
-    count = 2
-    def increment(self):
-        self.count+=50
-        return ''
 
 class FileUploadForm(forms.Form):
     script = forms.FileField()
 
-problem_dir = os.path.join(settings.BASE_DIR, "problems")
 
 def upload_file(request):
     if (request.method=="POST"):
@@ -40,14 +27,17 @@ def public_scoreboard(request):
 
 def problem_list(request):
     if (request.method=="GET"):
-        problem_list = os.listdir(problem_dir)
-        return render(request, "problem_list", {"problems": problem_list})            
+        problem_list = os.listdir(settings.problem_dir)
+        problems = []
+        index = 0
+        for i in problem_list:
+            problems.append([i, index])
+        
+        return render(request, "problem_list.html", {"problems": problems})            
             
-
-def problem_detail(request):
+def problem_detail(request, problem):
     if (request.method=="GET"):
-        problem = request.GET["problem"]
-        if ((problem==None) or (problem=="") ):
-            return redirect('judger:problem_list')
+        print(problem)
+    return HttpResponse(problem)
         
         

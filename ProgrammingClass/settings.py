@@ -151,3 +151,5 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 AUTH_USER_MODEL = 'User.Student'
 
 AUTHENTICATION_BACKENDS = ('User.backends.AuthenticationBackend.AuthenticationBackend','django.contrib.auth.backends.ModelBackend',)
+
+problem_dir = os.path.join(BASE_DIR, "Judger", "problems")
