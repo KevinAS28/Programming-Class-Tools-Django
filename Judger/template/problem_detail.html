@@ -99,7 +99,7 @@
       problem problem problem problem problem problem problem problem problem problem problem problem problem problem
       problem problem problem problem problem problem problem problem problem problem problem problem problem problem
       problem problem problem problem problem problem problem&nbsp;</span>
-  <form method="POST" enctype="multipart/form-data" action="">  
+  <form method="POST" enctype="multipart/form-data" action="{% url 'judger:upload_answer' problem %}">  
     {% csrf_token %}
     <input class="gwd-input-1obs" type="file" name="{{file_var_name}}" id="pypypy" accept="{{accepted_extension}}">
     <button class="gwd-button-1etg">Upload Jawaban Anda</button>

@@ -4,15 +4,15 @@ import os
 from django.contrib import messages 
 from ProgrammingClass.settings import *
 from Judger.judger_checker import static_check as judger_static_checker
-from Judger.models import *
-
+from Judger.models import StuProSco
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
 
 def public_scoreboard(request):
     if (request.method=="GET"):
-        return render(request, "public_scoreboard.html")
+        return render(request, "public_scoreboard.html", {"data": StuProSco.objects.all()})
 
 def problem_list(request):
     if (request.method=="GET"):
@@ -24,28 +24,19 @@ def problem_list(request):
         
         return render(request, "problem_list.html", {"problems": problems})            
 
-def upload_answer(request):
-    if (request.method=="POST"):
-        # form = FileUploadForm(request.POST, request.FILES)
-        # if (form.is_valid()):
-        #     with open("/home/kevin/test", "wb+") as write:
-        #         for chunk in request.FILES["script"].chunks():
-        #             write.write(chunk)
-            return redirect('judger:public_scoreboard')
-        
-    elif (request.method=="GET"):
-        return render(request, "upload.html")
-
-
-def problem_detail_page(request):
-    return render(request, "problem_detail.html", {
+def problem_detail_page(request, additional=dict()):
+    options = {
         "max_answer_size": str(judger_answer_max_file),
         "accepted_extension": judger_accepted_extension,
         "file_var_name": judger_file_var_name
-        })            
+        }
+    for key in additional:
+        options[key] = additional[key]
 
-def problem_detail(request, problem):
+    return render(request, "problem_detail.html", options)            
 
+
+def upload_answer(request, problem):
     if (request.method == 'POST'):
         #check if problem really exist
         problem_list = os.listdir(judger_problem_dir)
@@ -55,7 +46,7 @@ def problem_detail(request, problem):
             except:
                 #return render(request, "problem_detail.html")
                 print(request.FILES)
-                return problem_detail_page(request)
+                return redirect('judger:upload_answer')
 
 
             #check if the user upload the file
@@ -105,4 +96,6 @@ def problem_detail(request, problem):
         else:
             messages.error(request, "File Cannot be Empty!")
 
-    return problem_detail_page(request)
+def problem_detail(request, problem):
+
+    return problem_detail_page(request, {"problem": problem})
