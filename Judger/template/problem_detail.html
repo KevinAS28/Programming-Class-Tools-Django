@@ -48,25 +48,23 @@
 
     .gwd-span-1e6w {
       position: absolute;
-      top: 81px;
-      height: 155px;
+      top: 35px;
       transform-origin: 205.212px 77.6px 0px;
       width: 75%;
       left: 12%;
+      height: 50%;
     }
 
     .gwd-input-1obs {
       position: absolute;
       height: 27.2px;
-      top: 256px;
       width: 25%;
       left: 33%;
+      top: 69%;
     }
-
     .gwd-button-1etg {
       position: absolute;
       height: 33.6px;
-      top: 308.8px;
       background-image: none;
       border-width: 0px;
       border-image-source: none;
@@ -79,6 +77,7 @@
       border-radius: 5px;
       width: 25.89%;
       left: 33.16%;
+      top: 83.23%;
     }
   </style>
 
@@ -95,10 +94,8 @@
 
 <body class="htmlNoPages">
   
-  <span class="gwd-span-1by8">Problem Title</span><span class="gwd-span-1e6w">problem problem problem problem problem
-      problem problem problem problem problem problem problem problem problem problem problem problem problem problem
-      problem problem problem problem problem problem problem problem problem problem problem problem problem problem
-      problem problem problem problem problem problem problem&nbsp;</span>
+  {% comment %} <span class="gwd-span-1by8">Problem Title</span> {% endcomment %}
+  <div class="gwd-span-1e6w">{{content|safe}}</div> 
   <form method="POST" enctype="multipart/form-data" action="{% url 'judger:upload_answer' problem %}">  
     {% csrf_token %}
     <input class="gwd-input-1obs" type="file" name="{{file_var_name}}" id="pypypy" accept="{{accepted_extension}}">

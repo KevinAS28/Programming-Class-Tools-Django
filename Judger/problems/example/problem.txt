@@ -1,4 +1,0 @@
-Arrival of a strange
-
-please ask a input, and check if the input is "knock knock" (without quote) then give the output "whos there?"
-other wise, print "say the magic word"

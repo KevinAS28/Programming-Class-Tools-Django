@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, HttpResponse, reverse
 from django import forms
 import os
 from django.contrib import messages 
@@ -29,8 +29,14 @@ def problem_list(request):
         
         return render(request, "problem_list.html", {"problems": problems})            
 
-def problem_detail_page(request, additional=dict()):
+def problem_detail_page(request, problem="example", additional=dict()):
+    print(judger_problem_dir, problem)
+    file_path = os.path.join(judger_problem_dir, problem, "problem.html")
+    with open(file_path, "r") as baca:
+        content = baca.read()
     options = {
+        "problem": problem,
+        "content": content,
         "max_answer_size": str(judger_answer_max_file),
         "accepted_extension": judger_accepted_extension,
         "file_var_name": judger_file_var_name
@@ -85,8 +91,11 @@ def upload_answer(request, problem):
                 result = judger_static_checker(problem, 1)
                 if (result and (type(result)==bool)):
                     #if the answer correct
+                    
                     student = Student.objects.filter(email=request.user.email)[0]
-                    StuProSco(student=student, problem=problem, score=100).save()
+                    exist = StuProSco.objects.filter(student=student, problem=problem)
+                    if (len(exist)==0):
+                        StuProSco(student=student, problem=problem, score=100).save()
 
                     print("YAY")
                     messages.info(request, f"YAY")
@@ -105,8 +114,10 @@ def upload_answer(request, problem):
         else:
             messages.error(request, "File Cannot be Empty!")
     else:
-        redirect('judger:problem_detail')
+        #redirect()
+        #print(reverse('judger:problem_detail',args=["example"]))
+        return redirect(reverse('judger:problem_detail',args=["example"]))
 
 @login_required
 def problem_detail(request, problem):
-    return problem_detail_page(request, {"problem": problem})
+    return problem_detail_page(request, problem="example")
