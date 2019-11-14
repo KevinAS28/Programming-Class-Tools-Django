@@ -21,8 +21,9 @@ def static_check(problem_name, student_id):
     if (len(all_answers)):
         last_answer = sorted(all_answers)[-1]
         answer_file = os.path.join(student_answer_dir, last_answer)
-        print(writeup_file)
-        return py_static_check("Judger.problems.{problem_name}.answer".format(problem_name=problem_name), answer_file)
+        writeuppy = "Judger.problems.{problem_name}.answer".format(problem_name=problem_name)
+        print(writeuppy, answer_file)
+        return py_static_check(writeuppy=writeuppy, pyfile=answer_file)
     
     return "There is no answer file in %s"%(student_answer_dir)
     

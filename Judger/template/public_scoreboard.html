@@ -114,11 +114,11 @@
 
 <body class="htmlNoPages">
   <div class="gwd-div-1hqv">
-    {% for i in yay %}    
+    {% for i in data %}    
     <div class="gwd-div-nh2g" style="top: {{counter.count}}px;">
-      <span class="gwd-span-18k6">Tes</span>
-      <span class="gwd-span-18k6 gwd-span-7vzj">Tes</span>
-      <span class="gwd-span-18k6 gwd-span-7vzj gwd-span-1up5">Tes</span>
+      <span class="gwd-span-18k6">{{i.student.name}}</span>
+      <span class="gwd-span-18k6 gwd-span-7vzj">{{i.problem}}</span>
+      <span class="gwd-span-18k6 gwd-span-7vzj gwd-span-1up5">{{i.score}}</span>
     </div> 
     {{counter.increment}}
     {% endfor %}

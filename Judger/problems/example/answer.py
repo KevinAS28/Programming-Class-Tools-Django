@@ -8,3 +8,4 @@ static_out = [
 "whos there?\n",
 "say the magic word\n"
 ]
+

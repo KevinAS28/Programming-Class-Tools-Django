@@ -5,15 +5,20 @@ from django.contrib import messages
 from ProgrammingClass.settings import *
 from Judger.judger_checker import static_check as judger_static_checker
 from Judger.models import StuProSco
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import REDIRECT_FIELD_NAME
+from django.contrib.auth.decorators import login_required as django_login
+from User.user_models.Student import Student
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
-
+def login_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url="/login"):
+    return django_login(function, redirect_field_name, login_url)
 
 def public_scoreboard(request):
     if (request.method=="GET"):
         return render(request, "public_scoreboard.html", {"data": StuProSco.objects.all()})
 
+@login_required
 def problem_list(request):
     if (request.method=="GET"):
         problem_list = os.listdir(judger_problem_dir)
@@ -35,8 +40,10 @@ def problem_detail_page(request, additional=dict()):
 
     return render(request, "problem_detail.html", options)            
 
-
+@csrf_exempt
+@login_required
 def upload_answer(request, problem):
+    #if not request.user.is_authenticated:
     if (request.method == 'POST'):
         #check if problem really exist
         problem_list = os.listdir(judger_problem_dir)
@@ -78,6 +85,8 @@ def upload_answer(request, problem):
                 result = judger_static_checker(problem, 1)
                 if (result and (type(result)==bool)):
                     #if the answer correct
+                    student = Student.objects.filter(email=request.user.email)[0]
+                    StuProSco(student=student, problem=problem, score=100).save()
 
                     print("YAY")
                     messages.info(request, f"YAY")
@@ -95,7 +104,9 @@ def upload_answer(request, problem):
                 messages.error(request, "Problem not availble!")
         else:
             messages.error(request, "File Cannot be Empty!")
+    else:
+        redirect('judger:problem_detail')
 
+@login_required
 def problem_detail(request, problem):
-
     return problem_detail_page(request, {"problem": problem})
