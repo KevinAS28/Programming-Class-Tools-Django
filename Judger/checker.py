@@ -37,15 +37,14 @@ def py_check_input_output(inp, out, pyfile):
 def py_static_check(writeuppy, pyfile):
     """
     py_static_check(string writeuppy)
-    writeuppy is a python file that contain static_in, static_out, dynamic_in (optional), dynamic_out (optional)
+    writeuppy is a python file that contain static_in, static_out
     """
     pyans = importlib.import_module(writeuppy, __name__)
-    
     for i in range(len(pyans.static_in)):
         test = py_run_check(pyans.static_in[i], pyans.static_out[i], pyfile)
         if (test!=True):
-            return test
+            return test 
     return True
 
 if (__name__=="__main__"):
-    print(py_static_check("problems.example.writeup", "problems/example/writeup/static.py"))
+    print(py_static_check("problems.example.answer", "problems/example/writeup/static.py"))

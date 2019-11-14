@@ -100,6 +100,16 @@
       left: 67.17%;
     }
   </style>
+
+  {% if messages %}
+  {% for message in messages %}
+
+  <script>
+    alert("{{ message }}");
+  </script>
+
+  {% endfor %}
+  {% endif %}
 </head>
 
 <body class="htmlNoPages">

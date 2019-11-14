@@ -4,7 +4,8 @@ import os
 from django.contrib import messages 
 from ProgrammingClass.settings import *
 from Judger.judger_checker import static_check as judger_static_checker
-#import django.utils.datastructures.MultiValueDictKeyError
+from Judger.models import *
+
 # Create your views here.
 
 
@@ -36,6 +37,13 @@ def upload_answer(request):
         return render(request, "upload.html")
 
 
+def problem_detail_page(request):
+    return render(request, "problem_detail.html", {
+        "max_answer_size": str(judger_answer_max_file),
+        "accepted_extension": judger_accepted_extension,
+        "file_var_name": judger_file_var_name
+        })            
+
 def problem_detail(request, problem):
 
     if (request.method == 'POST'):
@@ -46,7 +54,8 @@ def problem_detail(request, problem):
                 pyfile = request.FILES[judger_file_var_name]
             except:
                 #return render(request, "problem_detail.html")
-                return HttpResponse(str(request.FILES))
+                print(request.FILES)
+                return problem_detail_page(request)
 
 
             #check if the user upload the file
@@ -77,22 +86,23 @@ def problem_detail(request, problem):
                 #check the written file
                 result = judger_static_checker(problem, 1)
                 if (result and (type(result)==bool)):
-                    messages.info("YAY")
+                    #if the answer correct
+
+                    print("YAY")
+                    messages.info(request, f"YAY")
                 if (not result):
-                    messages.info("NOT YAY")
+                    #if the answer incorrect
+                    print("NOT YAY")
+                    messages.info(request, f"NOT YAY")
                 if (type(result)==str):
-                    messages.error(result)
+                    #if error
+                    print("ERRORRRRRRRR", result)
+                    messages.error(request, result)
 
                 return redirect('judger:public_scoreboard')
             else:
                 messages.error(request, "Problem not availble!")
         else:
             messages.error(request, "File Cannot be Empty!")
-    return render(request, "problem_detail.html")
-    
 
-    return render(request, "problem_detail.html", {
-        "max_answer_size": judger_answer_max_file,
-        "accepted_extension": judger_accepted_extension,
-        "file_var_name": judger_file_var_name
-        })        
+    return problem_detail_page(request)
