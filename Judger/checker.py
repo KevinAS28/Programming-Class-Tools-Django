@@ -48,4 +48,4 @@ def py_static_check(writeuppy, pyfile):
     return True
 
 if (__name__=="__main__"):
-    print(py_static_check("problems.example.writeup", "problems/example/answer/example.py"))
+    print(py_static_check("problems.example.writeup", "problems/example/writeup/static.py"))

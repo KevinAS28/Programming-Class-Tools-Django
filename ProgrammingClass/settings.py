@@ -152,4 +152,12 @@ AUTH_USER_MODEL = 'User.Student'
 
 AUTHENTICATION_BACKENDS = ('User.backends.AuthenticationBackend.AuthenticationBackend','django.contrib.auth.backends.ModelBackend',)
 
-problem_dir = os.path.join(BASE_DIR, "Judger", "problems")
+judger_problem_dir = os.path.join(BASE_DIR, "Judger", "problems")
+
+judger_answer_max_file = 10240 #10 kb
+
+judger_accepted_extension = ",".join(['.py'])
+
+judger_file_var_name = "pypypy"
+
+judger_answer_upload_dir = os.path.join(BASE_DIR, 'Judger', 'problems', '{problem_name}', 'student_answers', '{student_id}')
