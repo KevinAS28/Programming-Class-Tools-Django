@@ -161,3 +161,5 @@ judger_accepted_extension = ",".join(['.py'])
 judger_file_var_name = "pypypy"
 
 judger_answer_upload_dir = os.path.join(BASE_DIR, 'Judger', 'problems', '{problem_name}', 'student_answers', '{student_id}')
+
+LOGOUT_REDIRECT_URL = '/judger/logout/'
