@@ -28,7 +28,7 @@ def problem_list(request):
         
         return render(request, "problem_list.html", {"problems": problems})            
 
-def problem_detail_page(request, problem="example", additional=dict()):
+def problem_detail_page(request, problem, additional=dict()):
     print(judger_problem_dir, problem)
     file_path = os.path.join(judger_problem_dir, problem, "problem.html")
     with open(file_path, "r") as baca:
@@ -62,8 +62,9 @@ def upload_answer(request, problem):
 
 
             #check if the user upload the file
+            print(request, request.user.id)
             if (pyfile):
-                upload_dir = judger_answer_upload_dir.format(problem_name=problem, student_id="1")
+                upload_dir = judger_answer_upload_dir.format(problem_name=problem, student_id=request.user.id)
                 
                 #check if the directory not exist
                 if (not os.access(upload_dir, os.R_OK)):
@@ -88,6 +89,7 @@ def upload_answer(request, problem):
 
                 #check the written file
                 result = judger_static_checker(problem, 1)
+                print("RESULT: ", result, type(result))
                 if (result and (type(result)==bool)):
                     #if the answer correct
                     
@@ -115,8 +117,8 @@ def upload_answer(request, problem):
     else:
         #redirect()
         #print(reverse('judger:problem_detail',args=["example"]))
-        return redirect(reverse('judger:problem_detail',args=["example"]))
+        return redirect(reverse('judger:problem_detail',args=[problem]))
 
 @login_required
 def problem_detail(request, problem):
-    return problem_detail_page(request, problem="example")
+    return problem_detail_page(request, problem=problem)

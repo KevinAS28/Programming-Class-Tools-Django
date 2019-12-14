@@ -76,7 +76,7 @@ def login_form(request):
         if user is not None: 
             form = login(request, user, backend='User.backends.AuthenticationBackend.AuthenticationBackend') 
             messages.success(request, f' wecome {email} !!') 
-            return redirect('judger:problem_detail') 
+            return redirect('judger:problem_list') 
         else: 
             messages.info(request, f'account done not exit plz sign in') 
     form = StudentLoginForm() 
