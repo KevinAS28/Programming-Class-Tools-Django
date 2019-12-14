@@ -6,10 +6,9 @@ from ProgrammingClass.settings import *
 from Judger.judger_checker import static_check as judger_static_checker
 from Judger.models import StuProSco
 from django.contrib.auth.decorators import REDIRECT_FIELD_NAME
-from django.contrib.auth.decorators import login_required as django_login
 from User.user_models.Student import Student
 from django.views.decorators.csrf import csrf_exempt
-# Create your views here.
+from django.contrib.auth.decorators import login_required as django_login
 
 def login_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url="/login"):
     return django_login(function, redirect_field_name, login_url)
